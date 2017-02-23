@@ -19,6 +19,22 @@ TEST(TicTacToeBoardTest, sanityCheck)
 	ASSERT_TRUE(true);
 }
 
+TEST(TicTacToeBoardTest, invalidPiece)
+{
+	TicTacToeBoard myboard;
+	myboard.placePiece(0,4);
+	Piece check=myboard.getPiece(0,4);
+	ASSERT_EQ(check,X);
+}
+TEST(TicTacToeBoardTest, toggleturn)
+{
+	TicTacToeBoard myboard;
+	myboard.placePiece(0,0);
+	myboard.placePiece(0,1);
+	Piece check=myboard.getPiece(0,1);
+	ASSERT_EQ(check,O);
+}
+
 TEST(TicTacToeBoardTest, constemptyboard)
 {
 	TicTacToeBoard myboard;
@@ -27,8 +43,10 @@ TEST(TicTacToeBoardTest, constemptyboard)
 		for (int j=0; j<3; j++)
 		{
 			Piece check=myboard.getPiece(i,j);	
-			ASSERT_TRUE(check==Blank);
-			//ASSERT_STREQ(Blank,check);
+			if (check==Blank)
+				ASSERT_TRUE(true);
+			else
+				ASSERT_TRUE(false);
 		}
 	}
 }
@@ -38,6 +56,5 @@ TEST(TicTacToeBoardTest, placePiece)
 	TicTacToeBoard myboard;
 	myboard.placePiece(0,0);
 	Piece check=myboard.getPiece(0,0);
-	ASSERT_TRUE(check==X);
-	//ASSERT_STREQ(X,check);
+	ASSERT_EQ(check,X);
 }
