@@ -26,6 +26,7 @@ TEST(TicTacToeBoardTest, invalidPiece)
 	Piece check=myboard.getPiece(0,4);
 	ASSERT_EQ(check,X);
 }
+
 TEST(TicTacToeBoardTest, toggleturn)
 {
 	TicTacToeBoard myboard;
