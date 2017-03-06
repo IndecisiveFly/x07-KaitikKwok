@@ -82,7 +82,7 @@ TEST(TicTacToeBoardTest, NotDone)
 	myboard.placePiece(0,0);
 	myboard.placePiece(1,1);
 	Piece check=myboard.getWinner();
-	ASSERT_EQ(check,Blank);
+	ASSERT_EQ(check,Invalid);
 }
 
 TEST(TicTacToeBoardTest, NoWinner)
