@@ -118,7 +118,7 @@ Piece TicTacToeBoard::getWinner()
 //diagonal
 	else if((board[0][0] == board[1][1]) && (board[0][0] == board[2][2]) && board[0][0]!=Blank)
 		winner=getPiece(0,0);
-	else if((board[0][2] == board[1][1]) && (board[0][2] == board[2][0]) && board[0][0]!=Blank)
+	else if((board[0][2] == board[1][1]) && (board[0][2] == board[2][0]) && board[0][2]!=Blank)
 		winner=getPiece(0,2);
 	else //no winner
 	{
