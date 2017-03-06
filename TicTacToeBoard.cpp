@@ -16,9 +16,9 @@ void TicTacToeBoard::toggleTurn()
 //Constructor sets an empty board and specifies it is X's turn first
 TicTacToeBoard::TicTacToeBoard()
 {
-	for (int i=0; i<=BOARDSIZE; i++)
+	for (int i=0; i<BOARDSIZE; i++)
 	{
-		for (int j=0; j<=BOARDSIZE; j++)
+		for (int j=0; j<BOARDSIZE; j++)
 		{
 			board[i][j]=Blank;
 		}
@@ -30,9 +30,9 @@ TicTacToeBoard::TicTacToeBoard()
 //Resets each board location to the Blank Piece value
 void TicTacToeBoard::clearBoard()
 {
-	for (int i=0; i<=BOARDSIZE; i++)
+	for (int i=0; i<BOARDSIZE; i++)
 	{
-		for (int j=0; j<=BOARDSIZE; j++)
+		for (int j=0; j<BOARDSIZE; j++)
 		{
 			board[i][j]=Blank;
 		}
@@ -50,7 +50,7 @@ void TicTacToeBoard::clearBoard()
 Piece TicTacToeBoard::placePiece(int row, int column)
 {
   //check if inside board size
-  if(row <=BOARDSIZE && row >=0 && column <= BOARDSIZE && column >=0) 
+  if(row<BOARDSIZE && row>=0 && column<BOARDSIZE && column>=0) 
     {
  	//check if there is a piece already
 	if (getPiece(row,column)==Blank)
@@ -87,7 +87,7 @@ Piece TicTacToeBoard::placePiece(int row, int column)
 **/
 Piece TicTacToeBoard::getPiece(int row, int column)
 {
-	if(row <=BOARDSIZE && row >=0 && column <= BOARDSIZE && column >=0)
+	if(row<BOARDSIZE && row>=0 && column<BOARDSIZE && column>=0)
 		return board[row][column];
 	else
 		return Invalid;
@@ -99,5 +99,37 @@ Piece TicTacToeBoard::getPiece(int row, int column)
 **/
 Piece TicTacToeBoard::getWinner()
 {
-  return Invalid;
+//assuming BOARDSIZE=3
+	Piece winner=Blank;
+//horizontal
+	if ((board[0][0] == board[0][1]) && (board[0][0] == board[0][2]))
+		winner=getPiece(0,0);
+	else if ((board[1][0] == board[1][1]) && (board[1][0] == board[1][2]))
+		winner=getPiece(1,0);
+	else if ((board[2][0] == board[2][1]) && (board[2][0] == board[2][2]))
+		winner=getPiece(2,0);
+//vertical
+	else if ((board[0][0] == board[1][0]) && (board[0][0] == board[2][0]))
+		winner=getPiece(0,0);
+	else if ((board[0][1] == board[1][1]) && (board[0][1] == board[2][1]))
+		winner=getPiece(0,1);
+	else if ((board[0][2] == board[1][2]) && (board[0][2] == board[2][2]))
+		winner=getPiece(0,2);
+	else //no winner
+	{
+		int hasblank=0;
+		for (int i=0; i<BOARDSIZE; i++)
+		{
+			for (int j=0; j<BOARDSIZE; j++)
+			{
+				if (board[i][j]==Blank)
+					hasblank=1;
+			}	
+		}
+		if(hasblank==1)
+		{
+			winner=Invalid;
+		}
+	}
+	return winner;
 }
