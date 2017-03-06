@@ -16,9 +16,9 @@ void TicTacToeBoard::toggleTurn()
 //Constructor sets an empty board and specifies it is X's turn first
 TicTacToeBoard::TicTacToeBoard()
 {
-	for (int i=0; i<BOARDSIZE; i++)
+	for (int i=0; i<=BOARDSIZE; i++)
 	{
-		for (int j=0; j<BOARDSIZE; j++)
+		for (int j=0; j<=BOARDSIZE; j++)
 		{
 			board[i][j]=Blank;
 		}
@@ -30,6 +30,13 @@ TicTacToeBoard::TicTacToeBoard()
 //Resets each board location to the Blank Piece value
 void TicTacToeBoard::clearBoard()
 {
+	for (int i=0; i<=BOARDSIZE; i++)
+	{
+		for (int j=0; j<=BOARDSIZE; j++)
+		{
+			board[i][j]=Blank;
+		}
+	}
 
 }
 
@@ -42,24 +49,36 @@ void TicTacToeBoard::clearBoard()
 **/ 
 Piece TicTacToeBoard::placePiece(int row, int column)
 {
-  if(row <=BOARDSIZE && row >=0 && column <= BOARDSIZE && column >=0)
+  //check if inside board size
+  if(row <=BOARDSIZE && row >=0 && column <= BOARDSIZE && column >=0) 
     {
-	if (turn==X)
-		{
-			board[row][column]=X;
-			toggleTurn();
-			return X;
-		}
-	if (turn==O)
-		{
-			board[row][column]=O;
-			toggleTurn();
-			return O;
-		}
+ 	//check if there is a piece already
+	if (getPiece(row,column)==Blank)
+	{
+		//place piece
+		if (turn==X)
+			{
+				board[row][column]=X;
+				toggleTurn();
+				return X;
+			}
+		if (turn==O)
+			{
+				board[row][column]=O;
+				toggleTurn();
+				return O;
+			}
 	
 	
+	}
+	else
+	{
+		toggleTurn();
+		return getPiece(row,column);
+	}
     }
-  return Invalid;
+	toggleTurn();
+  	return Invalid;
 }
 
 /**
@@ -68,7 +87,10 @@ Piece TicTacToeBoard::placePiece(int row, int column)
 **/
 Piece TicTacToeBoard::getPiece(int row, int column)
 {
-	return board[row][column];
+	if(row <=BOARDSIZE && row >=0 && column <= BOARDSIZE && column >=0)
+		return board[row][column];
+	else
+		return Invalid;
 }
 
 /**

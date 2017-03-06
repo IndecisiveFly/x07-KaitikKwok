@@ -19,12 +19,45 @@ TEST(TicTacToeBoardTest, sanityCheck)
 	ASSERT_TRUE(true);
 }
 
+TEST(TicTacToeBoardTest, clearBoard)
+{
+	TicTacToeBoard myboard;
+	for (int i=0; i<=3; i++)
+	{
+		for (int j=0; j<=3; j++)
+		{
+			myboard.placePiece(i,j);
+		}
+	}
+	myboard.clearBoard();
+
+	int flag=0;
+	for (int i=0; i<=3; i++)
+	{
+		for (int j=0; j<3; j++)
+		{
+			if (myboard.getPiece(i,j)!=Blank)
+				flag=1;
+		}
+	}
+	ASSERT_EQ(flag,0);
+	
+}
+
+TEST(TicTacToeBoardTest, spotTaken)
+{
+	TicTacToeBoard myboard;
+	myboard.placePiece(0,0);
+	Piece check=myboard.placePiece(0,0);
+	ASSERT_EQ(check,X);
+}
+
 TEST(TicTacToeBoardTest, invalidPiece)
 {
 	TicTacToeBoard myboard;
 	myboard.placePiece(0,4);
 	Piece check=myboard.getPiece(0,4);
-	ASSERT_EQ(check,X);
+	ASSERT_EQ(check,Invalid);
 }
 
 TEST(TicTacToeBoardTest, toggleturn)
