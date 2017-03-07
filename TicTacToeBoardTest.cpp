@@ -14,6 +14,119 @@ class TicTacToeBoardTest : public ::testing::Test
 		virtual void TearDown(){} //clean up after each test, (before destructor) 
 };
 
+TEST(TicTacToeBoardTest, horiz0)
+{
+	TicTacToeBoard myboard;
+	myboard.placePiece(0,0);
+	myboard.placePiece(0,0);
+	myboard.placePiece(0,1);
+	myboard.placePiece(0,1);
+	myboard.placePiece(0,2);
+	myboard.placePiece(0,2);
+
+	Piece check=myboard.getWinner();
+	ASSERT_EQ(check,X);
+}
+
+TEST(TicTacToeBoardTest, horiz1)
+{
+	TicTacToeBoard myboard;
+	myboard.placePiece(1,0);
+	myboard.placePiece(1,0);
+	myboard.placePiece(1,1);
+	myboard.placePiece(1,0);
+	myboard.placePiece(1,2);
+	myboard.placePiece(1,0);
+
+	Piece check=myboard.getWinner();
+	ASSERT_EQ(check,X);
+}
+
+TEST(TicTacToeBoardTest, horiz2)
+{
+	TicTacToeBoard myboard;
+	myboard.placePiece(2,0);
+	myboard.placePiece(2,0);
+	myboard.placePiece(2,1);
+	myboard.placePiece(2,0);
+	myboard.placePiece(2,2);
+	myboard.placePiece(2,0);
+
+	Piece check=myboard.getWinner();
+	ASSERT_EQ(check,X);
+}
+
+TEST(TicTacToeBoardTest, vert0)
+{
+	TicTacToeBoard myboard;
+	myboard.placePiece(0,0);
+	myboard.placePiece(0,0);
+	myboard.placePiece(1,0);
+	myboard.placePiece(0,0);
+	myboard.placePiece(2,0);
+	myboard.placePiece(0,0);
+
+	Piece check=myboard.getWinner();
+	ASSERT_EQ(check,X);
+}
+
+TEST(TicTacToeBoardTest, vert1)
+{
+	TicTacToeBoard myboard;
+	myboard.placePiece(0,1);
+	myboard.placePiece(0,1);
+	myboard.placePiece(1,1);
+	myboard.placePiece(0,1);
+	myboard.placePiece(2,1);
+	myboard.placePiece(0,1);
+
+	Piece check=myboard.getWinner();
+	ASSERT_EQ(check,X);
+}
+
+TEST(TicTacToeBoardTest, vert2)
+{
+	TicTacToeBoard myboard;
+	myboard.placePiece(0,2);
+	myboard.placePiece(0,2);
+	myboard.placePiece(1,2);
+	myboard.placePiece(0,2);
+	myboard.placePiece(2,2);
+	myboard.placePiece(0,2);
+
+	Piece check=myboard.getWinner();
+	ASSERT_EQ(check,X);
+}
+
+TEST(TicTacToeBoardTest, diag0)
+{
+	TicTacToeBoard myboard;
+	myboard.placePiece(0,0);
+	myboard.placePiece(0,0);
+	myboard.placePiece(1,1);
+	myboard.placePiece(0,0);
+	myboard.placePiece(2,2);
+	myboard.placePiece(0,0);
+
+	Piece check=myboard.getWinner();
+	ASSERT_EQ(check,X);
+}
+
+TEST(TicTacToeBoardTest, dia1)
+{
+	TicTacToeBoard myboard;
+	myboard.placePiece(0,2);
+	myboard.placePiece(0,2);
+	myboard.placePiece(1,1);
+	myboard.placePiece(0,2);
+	myboard.placePiece(2,0);
+	myboard.placePiece(0,2);
+
+	Piece check=myboard.getWinner();
+	ASSERT_EQ(check,X);
+
+}
+
 TEST(TicTacToeBoardTest, OWin_boardfull)
 {
 	TicTacToeBoard myboard;
@@ -88,15 +201,16 @@ TEST(TicTacToeBoardTest, NotDone)
 TEST(TicTacToeBoardTest, NoWinner)
 {
 	TicTacToeBoard myboard;
-	myboard.placePiece(0,0);//x
-	myboard.placePiece(0,1);//o
-	myboard.placePiece(0,2);
-	myboard.placePiece(1,2);
-	myboard.placePiece(1,0);
-	myboard.placePiece(2,0);
-	myboard.placePiece(1,1);
-	myboard.placePiece(2,1);
-	myboard.placePiece(2,2);
+
+	myboard.placePiece(0,0);//X
+	myboard.placePiece(0,1);//O
+	myboard.placePiece(0,2);//X
+	myboard.placePiece(1,0);//O
+	myboard.placePiece(1,2);//X
+	myboard.placePiece(1,1);//O
+	myboard.placePiece(2,0);//X
+	myboard.placePiece(2,2);//O
+	myboard.placePiece(2,1);//X
 	
 	Piece check=myboard.getWinner();
 	ASSERT_EQ(check,Blank);
